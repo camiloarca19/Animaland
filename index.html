@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Roboto' ,sans-serif;
+            text-align: center;
+            margin:0;
+            height: 100vh;
+            width: 100%;
+            display:grid;
+            place-items: center;
+            counter-reset: score;
+        }
+        .phone{
+            width: 300px;
+            height: 600px;
+            border: 8px solid black;
+            border-radius: 40px;
+            background-color: #CCEFFF;
+            box-shadow: 0 19px 38px rgba(0,0,0, 0.3),
+            0 15px 38px rgba(0,0,0, 0.3);
+            position:relative;
+            overflow: hidden;
+        }
+        .layer{
+            position:absolute;
+            animation-iteration-count: infinite;
+        }
+        .left-ear--outer{
+            background-color: white;
+            border-radius: 90%;
+            width: 20px;
+            height: 50px;
+            position:absolute;
+            left: 10px;
+            box-shadow: 40px 0 0px white;
+        }
+        .left-ear--inner{
+            background-color: pink;
+            border-radius: 90%;
+            width: 10px;
+            margin:0 auto;
+            height: 40px;
+            position: absolute;
+            margin: 0 auto;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            box-shadow: 40px 0 0px pink;
+        }
+        .head{
+            background-color: white;
+            border-radius: 50%;
+            width: 100%;
+            height: 80px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 30px;
+        }
+        input[type="checkbox"]{
+            
+        appearance: none;
+        cursor: pointer;
+        height: 80px;
+        margin:0;
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        width: 80px;
+    }
+    input:focus{
+        appearance: none;
+        outline:none;
+    }
+
+    input:checked{
+        counter-increment: score;
+    }
+    .score::after{
+        content: "    "counter(score)
+    }
+        
+        .layer-1{
+            z-index: 1;
+            height: 450px;
+            width: 80px;
+            /* background-color: papayawhip; */
+            bottom: 0;
+            right: 60px;
+            animation-name: conejito1;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+        }
+        @keyframes conejito1{
+            0%{
+                bottom: 0;
+            }
+            5%{
+                bottom: 4px;
+            }
+            20%{
+                bottom: -100px;
+            }
+            40%{
+                bottom: -100px;
+            }
+            50%{
+                bottom: -50px;
+            }
+        }
+        .head__eye{
+            background-color: rgb(110, 104, 104);
+            border-radius: 50px;
+            width: 6px;
+            height: 6px;
+            position:absolute;
+            top: 12px;
+            left: 30px;
+            box-shadow:16px 0 0 rgb(110, 104, 104) ;
+            animation-name: blink;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes blink{
+            0%{
+                height: 6px;
+            }
+            5%{
+                height: 1px;
+                transform: translate(0px, 3px);
+            }
+            10%{
+                transform: translate(0px, 0px);
+                height: 6px;
+            }
+        }
+        .layer-2{
+            height: 450px;
+            width: 80px;
+            /* background-color: papayawhip; */
+            bottom: 0;
+            left: 60px;
+            z-index: 2;
+            animation-name: conejito2;
+            animation-timing-function: ease-in-out;
+            animation-duration: 3s;
+        }
+        @keyframes conejito2{
+            0%{
+                bottom: 0;
+            }
+            10%{
+                bottom:10px;
+            }
+            50%{bottom: 10px;}
+            55%{bottom: 15px;}
+            60%{bottom: -80px;}
+            70%{bottom: -40px;}
+            80%{bottom: -40px;}
+            90%{bottom: -50px;}
+        }
+        .layer-3 {
+            z-index: 3;
+            left: 0;
+            right: 0;
+            margin:0 auto;
+            width: 220px;
+            height: 400px;
+            bottom: 0;
+        }
+        .ground{
+            background-color: rgb(125, 64, 20);
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: rgba(125,64,20,1);
+            opacity: 1;
+            background-image:  radial-gradient(#000000 0.5px, transparent 0.5px), radial-gradient(#000000 0.5px, rgba(125,64,20,1) 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0,10px 10px;
+            box-shadow: 4px 4px 8px rgba(0,0,0, 0.6),
+            -4px 4px 15px rgba(0,0,0, 0.6);
+            
+        }
+        .zigzag {
+            position:absolute;
+            top: 20px;
+            height: 32px;
+            width: 220px;
+            box-shadow: 0 -20px 0 green;
+            background-color: white;
+            background: linear-gradient(135deg, green 25%, transparent 25%) -16px 0,
+                        linear-gradient(-135deg, green 25%, transparent 25%) -16px 0,
+                        linear-gradient(45deg, rgb(125, 64, 20) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgb(125, 64, 20) 25%, rgb(105, 52, 15) 25%);
+        background-size: 32px 32px;
+        object-fit: cover;
+}
+        .layer-4{
+            z-index: 4;
+            height: 350px;
+            width: 80px;
+            /* background-color: papayawhip; */
+            bottom: 0;
+            left: 30px;
+            animation-name: conejito3;
+            animation-timing-function: ease-in-out;
+            animation-duration: 4s;
+        }
+        @keyframes conejito3{
+            0%{bottom: 0;}
+            5%{bottom: 4px;}
+            10%{bottom: -40px;}
+            15%{bottom: -44px;}
+            20%{bottom:0px;}
+            22%{bottom: 4px;}
+            25%{bottom: 0;}
+            30%{bottom: 4px;}
+            40%{bottom: -40px;}
+            45%{bottom: -44px;}
+            50%{bottom:0px;}
+            52%{bottom: 4px;}
+            60%{bottom: -53px;}
+            80%{bottom: -53px;}
+
+        }
+        .layer-5{
+            z-index: 5;
+            left: 0;
+            width: 200px;
+            height: 300px;
+            background-color: cadetblue;
+            bottom: 0;
+        }
+        .layer-6{
+            z-index: 6;
+            right: 30px;
+            height: 250px;
+            width: 80px;
+            /* background-color: papayawhip; */
+            bottom: 0;animation-name: conejito2;
+            animation-timing-function: ease-in-out;
+            animation-duration: 2s;
+
+        }
+        @keyframes conejito2{
+            0%{
+                bottom: 0;
+            }
+            5%{bottom: 5px;}
+            50%{bottom: -80px;}
+            90%{bottom: -80px;}
+        }
+        .layer-7{
+            z-index: 7;
+            right: 0;
+            width: 150px;
+            height: 200px;
+            background-color: rgb(61, 136, 139);
+            bottom: 0;
+        }
+        .layer-8{
+            z-index: 8;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            width: 200px;
+            height: 120px;
+            bottom: 0;
+            display: flex;
+        }
+        .tree .green{
+            width: 68px;
+            height: 200px;
+            background-color: green;
+            border-radius: 50px;
+            position:absolute;
+        }
+        .tree .tree1{
+            right: 0;
+            top: 10px;
+        }
+        .tree .tree2 {
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            top: -20px;
+        }
+        .layer-9{
+            z-index: 9;
+            left: 0;
+            width: 50px;
+            height: 100px;
+            bottom: 0;
+            border-radius: 50%;
+            box-shadow: 12px 8px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .layer-9 .cloud1{
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            border-radius: 40px;
+            background-color: white;
+            left: -30px;
+            bottom: 0;
+        }
+        .green {
+            box-shadow: 0cqi 8px 8px rgba(0, 0, 0, 0.2);
+          
+        }
+        .layer-9 .cloud2{
+            position: absolute;
+            width: 80px;
+            height: 150px;
+            border-radius: 40px;
+            background-color: white;
+            left: -10px;
+            bottom: -15px;
+        }
+        .layer-10{
+            z-index: 10;
+            z-index: 9;
+            right: 0;
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            background-color: whtesmoke;
+            bottom: 0;
+        }
+        .layer-10 .cloud1{
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            border-radius: 40px;
+            background-color: white;
+            left: -30px;
+            bottom: -10px;
+
+        }
+        .cloud-l{
+            background: rgb(161,213,255);
+background: linear-gradient(90deg, rgba(161,213,255,1) 2%, rgba(223,241,255,1) 71%, rgba(255,255,255,1) 100%);
+        }
+        .cloud-r{
+            background: rgb(161,213,255);
+background: linear-gradient(267deg, rgba(161,213,255,1) 2%, rgba(223,241,255,1) 40%, rgba(255,255,255,1) 100%);
+        }
+        .layer-10 .cloud2{
+            position: absolute;
+            width: 80px;
+            height: 150px;
+            border-radius: 40px;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone">
+        <h1>Animaland</h1>
+        <div class="layer layer-1">
+            <input type="checkbox">
+            <div class="left-ear--outer">
+                <div class="left-ear--inner"></div>
+            </div>
+            <div class="head">
+                <div class="head__eye"></div>
+            </div>
+        </div> 
+        <div class="layer layer-2">
+            <input type="checkbox">
+            <div class="left-ear--outer">
+                <div class="left-ear--inner"></div>
+            </div>
+            <div class="head">
+                <div class="head__eye"></div>
+            </div>
+        </div>
+        <div class="layer layer-3 ground">
+            <div class="zigzag"></div>
+        </div>
+        <div class="layer layer-4">
+            <input type="checkbox">
+            <div class="left-ear--outer">
+                <div class="left-ear--inner"></div>
+            </div>
+            <div class="head">
+                <div class="head__eye"></div>
+            </div>
+        </div>
+        <div class="layer layer-5 ground">
+            <div class="zigzag"></div>
+        </div>
+        <div class="layer layer-6">
+            <input type="checkbox">
+            <div class="left-ear--outer">
+                <div class="left-ear--inner"></div>
+            </div>
+            <div class="head">
+                <div class="head__eye"></div>
+            </div>
+        </div>
+        <div class="layer layer-7 ground">
+            <div class="zigzag"></div>
+        </div>
+        <div class="layer layer-8 tree">
+            <div class="green tree1"></div>
+            <div class="green tree2"></div>
+            <div class="green tree3"></div>
+        </div>
+        <div class="layer layer-9">
+            <div class="cloud-l cloud1"></div>
+            <div class="cloud-l cloud2"></div>
+        </div>
+        <div class="layer layer-10">
+            <div class="cloud-r cloud1"></div>
+            <div class="cloud-r cloud2"></div>
+        </div>
+        <h2 class="score">Score</h2>
+    </div>
+</body>
+</html>
